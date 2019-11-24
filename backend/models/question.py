@@ -10,7 +10,7 @@ class Question(db.Model, ModelMixin):
     answer = db.Column(db.String, nullable=False)
     difficulty = db.Column(db.Integer, nullable=False)
     category_id = db.Column(
-        db.Integer, db.ForeignKey("category.id"), nullable=False
+        db.Integer, db.ForeignKey("categories.id"), nullable=False
     )
 
     def __init__(self, **kwargs):

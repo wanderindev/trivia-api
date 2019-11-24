@@ -2,9 +2,8 @@ from flask import Flask, request, abort, jsonify
 from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
-from .config import config
+from config import config
 
-# from models import setup_db, Question, Category
 
 QUESTIONS_PER_PAGE = 10
 
@@ -19,6 +18,9 @@ def create_app(config_name="development"):
     cors.init_app(app, resources={r"/api/*": {"origins": "*"}})
     db.init_app(app)
 
+    from models.category import Category
+    from models.question import Question
+
     @app.after_request
     def after_request(response):
         response.headers.add(
@@ -29,9 +31,11 @@ def create_app(config_name="development"):
         )
         return response
 
-    @app.route("/")
-    def index():
-        return "Hello"
+    @app.route("/categories", methods=["GET"])
+    def categories():
+        categories = Category.list_all()
+        print(categories)
+        return jsonify({"categories": categories})
 
     """
     @TODO: 

@@ -13,5 +13,16 @@ class Category(db.Model):
     def __init__(self, **kwargs):
         super(Category, self).__init__(**kwargs)
 
-    def format(self):
-        return {"id": self.id, "type": self.type}
+    @classmethod
+    def get_all(cls):
+        return cls.query.all()
+
+    @classmethod
+    def list_all(cls):
+        return [
+            {
+                "id": category.id,
+                "type": category.type
+            }
+            for category in cls.get_all()
+        ]
