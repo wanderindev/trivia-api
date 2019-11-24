@@ -33,9 +33,7 @@ def create_app(config_name="development"):
 
     @app.route("/categories", methods=["GET"])
     def categories():
-        categories = Category.list_all()
-        print(categories)
-        return jsonify({"categories": categories})
+        return jsonify(Category.list_all())
 
     """
     @TODO: 

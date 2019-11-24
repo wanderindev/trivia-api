@@ -19,10 +19,13 @@ class Category(db.Model):
 
     @classmethod
     def list_all(cls):
-        return [
-            {
-                "id": category.id,
-                "type": category.type
-            }
-            for category in cls.get_all()
-        ]
+        categories = cls.get_all()
+
+        return {
+            "categories": [
+                {"id": category.id, "type": category.type}
+                for category in categories
+            ],
+            "total_categories": len(categories),
+            "success": True,
+        }
