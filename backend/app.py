@@ -79,12 +79,26 @@ def create_app(config_name="development"):
             }
         )
 
-    """
-    @TODO: 
-    Create an endpoint to POST a new question, 
-    which will require the question and answer text, 
-    category, and difficulty score.
-    """
+    @app.route("/questions", methods=["POST"])
+    def create_question():
+        data = request.get_json()
+        question = Question(**data)
+        result = question.insert_record()
+
+        if result["error"]:
+            abort(500)
+
+        _id = result["id"]
+        questions = Question.get_by_page(request, QUESTIONS_PER_PAGE)
+
+        return jsonify(
+            {
+                "created": _id,
+                "questions": questions,
+                "total_questions": len(Question.get_all()),
+                "success": True,
+            }
+        )
 
     """
     TEST: At this point, when you start the application

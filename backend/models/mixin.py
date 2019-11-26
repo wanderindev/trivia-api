@@ -37,7 +37,7 @@ class ModelMixin(object):
         try:
             db.session.add(self)
             db.session.commit()
-            return {"error": False}
+            return {"error": False, "id": self.id}
         except exc.SQLAlchemyError as e:
             print(e)
             print(sys.exc_info())
