@@ -30,3 +30,10 @@ class Question(db.Model, ModelMixin):
         start = (page - 1) * page_size
         end = start + page_size
         return [question.format() for question in cls.get_all()[start:end]]
+
+    @classmethod
+    def search(cls, search_term):
+        questions = cls.query.filter(
+            cls.question.ilike(f"%{search_term}%")
+        ).all()
+        return [question.format() for question in questions]
