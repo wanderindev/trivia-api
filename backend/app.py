@@ -114,6 +114,25 @@ def create_app(config_name="development"):
     @TODO: 
     Create a GET endpoint to get questions based on category. 
     """
+
+    @app.route("/questions/<int:category_id>", methods=["GET"])
+    def questions_by_category(category_id):
+        questions = Question.get_by_category_by_page(
+            category_id, request, QUESTIONS_PER_PAGE
+        )
+
+        if len(questions) == 0:
+            abort(404)
+
+        return jsonify(
+            {
+                "questions": questions,
+                "total_questions": len(Question.get_by_category(category_id)),
+                "current_category": category_id,
+                "success": True,
+            }
+        )
+
     """
     @TODO: 
     Create a POST endpoint to get questions to play the quiz. 

@@ -25,6 +25,20 @@ class Question(db.Model, ModelMixin):
         return cls.query.filter(cls.id == _id).one_or_none()
 
     @classmethod
+    def get_by_category(cls, category_id):
+        return cls.query.filter(cls.category_id == category_id).all()
+
+    @classmethod
+    def get_by_category_by_page(cls, category_id, request, page_size):
+        page = request.args.get("page", 1, type=int)
+        start = (page - 1) * page_size
+        end = start + page_size
+        return [
+            question.format()
+            for question in cls.get_by_category(category_id)[start:end]
+        ]
+
+    @classmethod
     def get_by_page(cls, request, page_size):
         page = request.args.get("page", 1, type=int)
         start = (page - 1) * page_size
