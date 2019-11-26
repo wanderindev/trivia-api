@@ -21,7 +21,12 @@ class Question(db.Model, ModelMixin):
         return cls.query.order_by(cls.id).all()
 
     @classmethod
-    def get_by_page(cls, page, page_size):
+    def get_by_id(cls, _id):
+        return cls.query.filter(cls.id == _id).one_or_none()
+
+    @classmethod
+    def get_by_page(cls, request, page_size):
+        page = request.args.get("page", 1, type=int)
         start = (page - 1) * page_size
         end = start + page_size
         return [question.format() for question in cls.get_all()[start:end]]

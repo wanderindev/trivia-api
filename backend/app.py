@@ -1,6 +1,5 @@
 from flask import Flask, request, abort, jsonify
 from flask_cors import CORS
-from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from config import config
 
@@ -44,9 +43,7 @@ def create_app(config_name="development"):
 
     @app.route("/questions", methods=["GET"])
     def get_questions():
-        page = request.args.get("page", 1, type=int)
-        page_size = QUESTIONS_PER_PAGE
-        questions = Question.get_by_page(page, page_size)
+        questions = Question.get_by_page(request, QUESTIONS_PER_PAGE)
 
         if len(questions) == 0:
             abort(404)
@@ -59,6 +56,36 @@ def create_app(config_name="development"):
             }
         )
 
+    @app.route("/questions/<int:question_id>", methods=["DELETE"])
+    def delete_question(question_id):
+        question = Question.get_by_id(question_id)
+
+        if question is None:
+            abort(404)
+
+        result = question.delete_record()
+
+        if result["error"]:
+            abort(500)
+
+        questions = Question.get_by_page(request, QUESTIONS_PER_PAGE)
+
+        return jsonify(
+            {
+                "deleted": question_id,
+                "questions": questions,
+                "total_questions": len(Question.get_all()),
+                "success": True,
+            }
+        )
+
+    """
+    @TODO: 
+    Create an endpoint to POST a new question, 
+    which will require the question and answer text, 
+    category, and difficulty score.
+    """
+
     """
     TEST: At this point, when you start the application
     you should see questions and categories generated,
@@ -67,21 +94,11 @@ def create_app(config_name="development"):
     """
 
     """
-    @TODO: 
-    Create an endpoint to DELETE question using a question ID. 
-    """
-
-    """
     TEST: When you click the trash icon next to a question, the question will be removed.
     This removal will persist in the database and when you refresh the page. 
     """
 
     """
-    @TODO: 
-    Create an endpoint to POST a new question, 
-    which will require the question and answer text, 
-    category, and difficulty score.
-
     TEST: When you submit a question on the "Add" tab, 
     the form will clear and the question will appear at the end of the last page
     of the questions list in the "List" tab.  
@@ -130,9 +147,22 @@ def create_app(config_name="development"):
     def unprocessable(error):
         return (
             jsonify(
-                {"success": False, "error": 422, "message": "uunprocessable"}
+                {"success": False, "error": 422, "message": "Unprocessable"}
             ),
             422,
+        )
+
+    @app.errorhandler(500)
+    def unprocessable(error):
+        return (
+            jsonify(
+                {
+                    "success": False,
+                    "error": 500,
+                    "message": "Internal server error",
+                }
+            ),
+            500,
         )
 
     return app
