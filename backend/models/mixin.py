@@ -1,5 +1,8 @@
 import sys
+from datetime import date, datetime, time
+from decimal import Decimal
 from sqlalchemy import exc
+from sqlalchemy.orm import collections
 from app import db
 
 
@@ -56,3 +59,19 @@ class ModelMixin(object):
             return {"error": True}
         finally:
             db.session.close()
+
+    def format(self):
+        """Returns a dict representing the model instance"""
+        output = {}
+
+        for k, v in self:
+            if type(v) == collections.InstrumentedList:
+                output[k] = [item.to_dict() for item in v]
+            elif isinstance(v, (date, datetime, time)):
+                output[k] = v.isoformat()
+            elif isinstance(v, (float, Decimal)):
+                output[k] = str(v)
+            else:
+                output[k] = v
+
+        return output

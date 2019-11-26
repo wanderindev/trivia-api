@@ -32,14 +32,15 @@ def create_app(config_name="development"):
         return response
 
     @app.route("/categories", methods=["GET"])
-    def categories():
-        return jsonify(Category.list_all())
-
-    """
-    @TODO: 
-    Create an endpoint to handle GET requests 
-    for all available categories.
-    """
+    def get_categories():
+        categories = Category.list_all()
+        return jsonify(
+            {
+                "categories": categories,
+                "total_categories": len(categories),
+                "success": True,
+            }
+        )
 
     """
     @TODO: 
@@ -47,7 +48,26 @@ def create_app(config_name="development"):
     including pagination (every 10 questions). 
     This endpoint should return a list of questions, 
     number of total questions, current category, categories. 
+    """
 
+    @app.route("/questions", methods=["GET"])
+    def get_questions():
+        page = request.args.get("page", 1, type=int)
+        page_size = QUESTIONS_PER_PAGE
+        questions = Question.get_by_page(page, page_size)
+
+        if len(questions) == 0:
+            abort(404)
+
+        return jsonify(
+            {
+                "questions": questions,
+                "total_questions": len(Question.get_all()),
+                "success": True,
+            }
+        )
+
+    """
     TEST: At this point, when you start the application
     you should see questions and categories generated,
     ten questions per page and pagination at the bottom of the screen for three pages.

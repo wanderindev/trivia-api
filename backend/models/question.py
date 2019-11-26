@@ -16,11 +16,12 @@ class Question(db.Model, ModelMixin):
     def __init__(self, **kwargs):
         super(Question, self).__init__(**kwargs)
 
-    def format(self):
-        return {
-            "id": self.id,
-            "question": self.question,
-            "answer": self.answer,
-            "category": self.category,
-            "difficulty": self.difficulty,
-        }
+    @classmethod
+    def get_all(cls):
+        return cls.query.order_by(cls.id).all()
+
+    @classmethod
+    def get_by_page(cls, page, page_size):
+        start = (page - 1) * page_size
+        end = start + page_size
+        return [question.format() for question in cls.get_all()[start:end]]

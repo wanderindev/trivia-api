@@ -1,7 +1,8 @@
 from app import db
+from .mixin import ModelMixin
 
 
-class Category(db.Model):
+class Category(db.Model, ModelMixin):
     __tablename__ = "categories"
 
     id = db.Column(db.Integer, primary_key=True)
@@ -15,17 +16,8 @@ class Category(db.Model):
 
     @classmethod
     def get_all(cls):
-        return cls.query.all()
+        return cls.query.order_by(cls.id).all()
 
     @classmethod
     def list_all(cls):
-        categories = cls.get_all()
-
-        return {
-            "categories": [
-                {"id": category.id, "type": category.type}
-                for category in categories
-            ],
-            "total_categories": len(categories),
-            "success": True,
-        }
+        return [category.format() for category in cls.get_all()]
