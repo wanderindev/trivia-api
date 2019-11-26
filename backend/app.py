@@ -42,14 +42,6 @@ def create_app(config_name="development"):
             }
         )
 
-    """
-    @TODO: 
-    Create an endpoint to handle GET requests for questions, 
-    including pagination (every 10 questions). 
-    This endpoint should return a list of questions, 
-    number of total questions, current category, categories. 
-    """
-
     @app.route("/questions", methods=["GET"])
     def get_questions():
         page = request.args.get("page", 1, type=int)
@@ -77,7 +69,9 @@ def create_app(config_name="development"):
     """
     @TODO: 
     Create an endpoint to DELETE question using a question ID. 
+    """
 
+    """
     TEST: When you click the trash icon next to a question, the question will be removed.
     This removal will persist in the database and when you refresh the page. 
     """
@@ -125,10 +119,20 @@ def create_app(config_name="development"):
     and shown whether they were correct or not. 
     """
 
-    """
-    @TODO: 
-    Create error handlers for all expected errors 
-    including 404 and 422. 
-    """
+    @app.errorhandler(404)
+    def not_found(error):
+        return (
+            jsonify({"success": False, "error": 404, "message": "Not found"}),
+            404,
+        )
+
+    @app.errorhandler(422)
+    def unprocessable(error):
+        return (
+            jsonify(
+                {"success": False, "error": 422, "message": "uunprocessable"}
+            ),
+            422,
+        )
 
     return app
