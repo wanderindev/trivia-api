@@ -1,3 +1,4 @@
+import random
 from app import db
 from .mixin import ModelMixin
 
@@ -26,6 +27,8 @@ class Question(db.Model, ModelMixin):
 
     @classmethod
     def get_by_category(cls, category_id):
+        if category_id == 0:
+            return cls.query.all()
         return cls.query.filter(cls.category_id == category_id).all()
 
     @classmethod
@@ -44,6 +47,19 @@ class Question(db.Model, ModelMixin):
         start = (page - 1) * page_size
         end = start + page_size
         return [question.format() for question in cls.get_all()[start:end]]
+
+    @classmethod
+    def get_random(cls, category_id, previous_questions):
+        questions = cls.get_by_category(category_id)
+        new_questions = [
+            question.format()
+            for question in questions
+            if question.format()["id"] not in previous_questions
+        ]
+
+        if len(new_questions) == 0:
+            return None
+        return random.choice(new_questions)
 
     @classmethod
     def search(cls, search_term):

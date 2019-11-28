@@ -101,7 +101,7 @@ def create_app(config_name="development"):
 
     @app.route("/questions/search", methods=["POST"])
     def search_questions():
-        search_term = request.form.get("search_term", "")
+        search_term = request.get_json()["search_term"]
         questions = Question.search(search_term)
 
         if len(questions) == 0:
@@ -133,13 +133,22 @@ def create_app(config_name="development"):
             }
         )
 
-    """
-    @TODO: 
-    Create a POST endpoint to get questions to play the quiz. 
-    This endpoint should take category and previous question parameters 
-    and return a random questions within the given category, 
-    if provided, and that is not one of the previous questions. 
-    """
+    @app.route("/quizzes", methods=["POST"])
+    def quiz():
+        data = request.get_json()
+        previous_questions = data.get("previous_questions", [])
+        category = data.get("quiz_category", None)
+
+        if not category:
+            abort(400)
+
+        question = Question.get_random(category["id"], previous_questions)
+
+        if question is None:
+            return jsonify({"success": True})
+
+        return jsonify({"question": question, "success": True})
+
     """
     TEST: At this point, when you start the application
     you should see questions and categories generated,
