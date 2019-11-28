@@ -7,10 +7,16 @@
   padding: 20px;
   padding-right: 40%;
   padding-left: 5%;
+  align-items: center;
 }
 
 .App-header > h1 {
   color: dodgerblue;
+}
+
+.App-header > h1,
+.App-header > h2 {
+  cursor: pointer;
 }
 
 .App-intro {
@@ -24,6 +30,10 @@ h2 {
 li {
   text-align: center;
   margin: 5px 0px;
+}
+
+li:hover {
+  cursor: pointer;
 }
 
 ul {
