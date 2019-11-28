@@ -19,6 +19,10 @@ class Category(db.Model, ModelMixin):
         return cls.query.order_by(cls.id).all()
 
     @classmethod
+    def get_by_id(cls, _id):
+        return cls.query.filter(cls.id == _id).one_or_none()
+
+    @classmethod
     def get_ids(cls):
         return [category.id for category in cls.get_all()]
 

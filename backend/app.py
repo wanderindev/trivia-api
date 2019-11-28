@@ -51,6 +51,7 @@ def create_app(config_name="development"):
                 "questions": questions,
                 "total_questions": len(Question.get_all()),
                 "success": True,
+                "categories": Category.to_dict(),
             }
         )
 
@@ -106,14 +107,15 @@ def create_app(config_name="development"):
         if len(questions) == 0:
             abort(404)
 
-        return jsonify({"questions": questions, "count": len(questions)})
+        return jsonify(
+            {
+                "questions": questions,
+                "total_questions": len(questions),
+                "success": True,
+            }
+        )
 
-    """
-    @TODO: 
-    Create a GET endpoint to get questions based on category. 
-    """
-
-    @app.route("/questions/<int:category_id>", methods=["GET"])
+    @app.route("/categories/<int:category_id>/questions", methods=["GET"])
     def questions_by_category(category_id):
         questions = Question.get_by_category_by_page(
             category_id, request, QUESTIONS_PER_PAGE
@@ -126,7 +128,7 @@ def create_app(config_name="development"):
             {
                 "questions": questions,
                 "total_questions": len(Question.get_by_category(category_id)),
-                "current_category": category_id,
+                "current_category": Category.get_by_id(category_id).type,
                 "success": True,
             }
         )
