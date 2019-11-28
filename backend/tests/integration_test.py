@@ -154,6 +154,6 @@ class TestQuestion(BaseTest):
             self.assertIsNotNone(questions)
             self.assertEqual(questions, [self.q_3.format()])
 
-            
+
 if __name__ == "__main__":
     unittest.main()

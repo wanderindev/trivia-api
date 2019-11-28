@@ -18,7 +18,7 @@ class BaseTest(TestCase):
 
     def setUp(self) -> None:
         """Create all db tables before each test."""
-        self.client = app.test_client
+        self.client = app.test_client()
         self.app_context = app.app_context()
 
         with self.app_context:

@@ -139,7 +139,8 @@ def create_app(config_name="development"):
         previous_questions = data.get("previous_questions", [])
         category = data.get("quiz_category", None)
 
-        if not category:
+        if category is None:
+            print("abort")
             abort(400)
 
         question = Question.get_random(category["id"], previous_questions)
@@ -149,44 +150,19 @@ def create_app(config_name="development"):
 
         return jsonify({"question": question, "success": True})
 
-    """
-    TEST: At this point, when you start the application
-    you should see questions and categories generated,
-    ten questions per page and pagination at the bottom of the screen for three pages.
-    Clicking on the page numbers should update the questions. 
-    """
-
-    """
-    TEST: When you click the trash icon next to a question, the question will be removed.
-    This removal will persist in the database and when you refresh the page. 
-    """
-
-    """
-    TEST: When you submit a question on the "Add" tab, 
-    the form will clear and the question will appear at the end of the last page
-    of the questions list in the "List" tab.  
-    """
-
-    """
-    TEST: Search by any phrase. The questions list will update to include 
-    only question that include that string within their question. 
-    Try using the word "title" to start. 
-    """
-
-    """
-    TEST: In the "List" tab / main screen, clicking on one of the 
-    categories in the left column will cause only questions of that 
-    category to be shown. 
-    """
-
-    """
-    TEST: In the "Play" tab, after a user selects "All" or a category,
-    one question at a time is displayed, the user is allowed to answer
-    and shown whether they were correct or not. 
-    """
+    @app.errorhandler(400)
+    def not_found(error):
+        print(error)
+        return (
+            jsonify(
+                {"success": False, "error": 400, "message": "Bad request"}
+            ),
+            404,
+        )
 
     @app.errorhandler(404)
     def not_found(error):
+        print(error)
         return (
             jsonify({"success": False, "error": 404, "message": "Not found"}),
             404,
@@ -194,6 +170,7 @@ def create_app(config_name="development"):
 
     @app.errorhandler(422)
     def unprocessable(error):
+        print(error)
         return (
             jsonify(
                 {"success": False, "error": 422, "message": "Unprocessable"}
@@ -203,6 +180,7 @@ def create_app(config_name="development"):
 
     @app.errorhandler(500)
     def unprocessable(error):
+        print(error)
         return (
             jsonify(
                 {
