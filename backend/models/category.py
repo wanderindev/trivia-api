@@ -1,5 +1,6 @@
 from app import db
 from .mixin import ModelMixin
+from .question import Question
 
 
 class Category(db.Model, ModelMixin):
@@ -8,7 +9,7 @@ class Category(db.Model, ModelMixin):
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String, nullable=False)
     questions = db.relationship(
-        "Question", backref="category", lazy=True, cascade="delete"
+        Question, backref="category", lazy=True, cascade="delete"
     )
 
     def __init__(self, **kwargs):
