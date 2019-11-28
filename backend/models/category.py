@@ -19,5 +19,17 @@ class Category(db.Model, ModelMixin):
         return cls.query.order_by(cls.id).all()
 
     @classmethod
+    def get_ids(cls):
+        return [category.id for category in cls.get_all()]
+
+    @classmethod
+    def get_types(cls):
+        return [category.type for category in cls.get_all()]
+
+    @classmethod
     def list_all(cls):
         return [category.format() for category in cls.get_all()]
+
+    @classmethod
+    def to_dict(cls):
+        return dict(zip(cls.get_ids(), cls.get_types()))

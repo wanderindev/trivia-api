@@ -32,14 +32,12 @@ def create_app(config_name="development"):
 
     @app.route("/categories", methods=["GET"])
     def get_categories():
-        categories = Category.list_all()
-        return jsonify(
-            {
-                "categories": categories,
-                "total_categories": len(categories),
-                "success": True,
-            }
-        )
+        categories = Category.to_dict()
+
+        if len(categories) == 0:
+            abort(404)
+
+        return jsonify({"categories": categories, "success": True,})
 
     @app.route("/questions", methods=["GET"])
     def get_questions():
