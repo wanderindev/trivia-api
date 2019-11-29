@@ -424,7 +424,7 @@ class TestQuestionResource(BaseTest):
             self.assertEqual(result["error"], 404)
             self.assertEqual(result["message"], "Not found")
 
-    def test_quizz_by_valid(self):
+    def test_quizz_valid(self):
         """
         Test that a POST request to the /quizzes endpoint returns the
         correct response when there are questions in the database for
@@ -448,7 +448,7 @@ class TestQuestionResource(BaseTest):
                 result["question"]["category_id"], self.c_1.format()["id"],
             )
 
-    def test_quizz_by_no_more_questions(self):
+    def test_quizz_no_more_questions(self):
         """
         Test that a POST request to the /quizzes endpoint returns the
         correct response when there are NO more questions in the database for
@@ -472,7 +472,7 @@ class TestQuestionResource(BaseTest):
             )
             self.assertTrue(result["success"])
 
-    def test_quizz_by_no_category(self):
+    def test_quizz_no_category(self):
         """
         Test that a POST request to the /quizzes endpoint returns the
         correct response when the payload does not contain a category.

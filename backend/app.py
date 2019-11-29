@@ -62,6 +62,7 @@ def create_app(config_name="development"):
         if question is None:
             abort(404)
 
+
         result = question.delete_record()
 
         if result["error"]:
@@ -140,7 +141,6 @@ def create_app(config_name="development"):
         category = data.get("quiz_category", None)
 
         if category is None:
-            print("abort")
             abort(400)
 
         question = Question.get_random(category["id"], previous_questions)
@@ -150,9 +150,9 @@ def create_app(config_name="development"):
 
         return jsonify({"question": question, "success": True})
 
+    # noinspection PyUnusedLocal
     @app.errorhandler(400)
     def not_found(error):
-        print(error)
         return (
             jsonify(
                 {"success": False, "error": 400, "message": "Bad request"}
@@ -160,17 +160,17 @@ def create_app(config_name="development"):
             404,
         )
 
+    # noinspection PyUnusedLocal
     @app.errorhandler(404)
     def not_found(error):
-        print(error)
         return (
             jsonify({"success": False, "error": 404, "message": "Not found"}),
             404,
         )
 
+    # noinspection PyUnusedLocal
     @app.errorhandler(422)
-    def unprocessable(error):
-        print(error)
+    def unprocessable(error): # pragma: no cover
         return (
             jsonify(
                 {"success": False, "error": 422, "message": "Unprocessable"}
@@ -178,9 +178,9 @@ def create_app(config_name="development"):
             422,
         )
 
+    # noinspection PyUnusedLocal
     @app.errorhandler(500)
     def unprocessable(error):
-        print(error)
         return (
             jsonify(
                 {
