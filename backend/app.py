@@ -1,4 +1,4 @@
-from flask import Flask, request, abort, jsonify
+from flask import Flask, request, abort, jsonify, Response
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from config import config
@@ -10,7 +10,14 @@ cors = CORS()
 db = SQLAlchemy()
 
 
-def create_app(config_name="development"):
+def create_app(config_name: str = "development") -> Flask:
+    """
+    Factory for the creation of a Flask app.
+
+    :param config_name: the key for the config setting to use
+    :type config_name: str
+    :return: app: a Flask app instance
+    """
     app = Flask(__name__)
     app.config.from_object(config[config_name])
     config[config_name].init_app(app)
@@ -21,7 +28,8 @@ def create_app(config_name="development"):
     from models.question import Question
 
     @app.after_request
-    def after_request(response):
+    def after_request(response: Response) -> Response:
+        """Add headers to every response"""
         response.headers.add(
             "Access-Control-Allow-Headers", "Content-Type, Authorization"
         )
@@ -61,7 +69,6 @@ def create_app(config_name="development"):
 
         if question is None:
             abort(404)
-
 
         result = question.delete_record()
 
@@ -170,7 +177,7 @@ def create_app(config_name="development"):
 
     # noinspection PyUnusedLocal
     @app.errorhandler(422)
-    def unprocessable(error): # pragma: no cover
+    def unprocessable(error):  # pragma: no cover
         return (
             jsonify(
                 {"success": False, "error": 422, "message": "Unprocessable"}

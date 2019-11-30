@@ -6,11 +6,11 @@ from app import db
 
 
 class ModelMixin(object):
-    def __iter__(self): # pragma: no cover
+    def __iter__(self):  # pragma: no cover
         """Make model instances iterable"""
         return ((k, v) for k, v in vars(self).items() if not k.startswith("_"))
 
-    def __repr__(self): # pragma: no cover
+    def __repr__(self):  # pragma: no cover
         """Return a string representation of a model instance"""
         class_name = type(self).__name__
         attributes = ", ".join([f"{k!r}={v!r}" for k, v in self])
@@ -24,7 +24,7 @@ class ModelMixin(object):
             db.session.delete(self)
             db.session.commit()
             return {"error": False}
-        except exc.SQLAlchemyError as e: # pragma: no cover
+        except exc.SQLAlchemyError as e:  # pragma: no cover
             # print(e)
             # print(sys.exc_info())
             db.session.rollback()
@@ -39,7 +39,7 @@ class ModelMixin(object):
             db.session.add(self)
             db.session.commit()
             return {"error": False, "id": self.id}
-        except exc.SQLAlchemyError as e: # pragma: no cover
+        except exc.SQLAlchemyError as e:  # pragma: no cover
             # print(e)
             # print(sys.exc_info())
             db.session.rollback()
@@ -52,11 +52,11 @@ class ModelMixin(object):
         output = {}
 
         for k, v in self:
-            if type(v) == collections.InstrumentedList: # pragma: no cover
+            if type(v) == collections.InstrumentedList:  # pragma: no cover
                 output[k] = [item.to_dict() for item in v]
-            elif isinstance(v, (date, datetime, time)): # pragma: no cover
+            elif isinstance(v, (date, datetime, time)):  # pragma: no cover
                 output[k] = v.isoformat()
-            elif isinstance(v, (float, Decimal)): # pragma: no cover
+            elif isinstance(v, (float, Decimal)):  # pragma: no cover
                 output[k] = str(v)
             else:
                 output[k] = v
