@@ -109,7 +109,7 @@ npm start
 
 ## API documentation
 For additional information about the API endpoints, visit the 
-[API documentation](https://documenter.getpostman.com/view/2325066/SWDze1MH).
+[API documentation](https://documenter.getpostman.com/view/2325066/SWDzeLuh).
 
 ## References
 [_Effective Python_](https://www.amazon.com/-/es/Brett-Slatkin/dp/0134034287/ref=sr_1_3?__mk_es_US=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=effective+python&qid=1574387968&sr=8-3) by Brett Slatkin
