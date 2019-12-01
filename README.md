@@ -34,7 +34,9 @@ In the backend, I added all the endpoints required by the frontend, completed th
 and added automated tests.
 
 ## How to use
-**Note:** A 2-minute video showing all the steps below is available [here]()
+**Note:** I recorded [short video](http://youtu.be/1x2MupZ6ukc?hd=1) showing all 
+setup steps, running the tests and coverage report, and 
+connecting with Postman and with the frontend.
 
 To complete the steps, you need three terminal windows:  one for running
 the frontend, one for running the database, and one for running the backend.
