@@ -34,7 +34,7 @@ In the backend, I added all the endpoints required by the frontend, completed th
 and added automated tests.
 
 ## How to use
-**Note:** I recorded [short video](http://youtu.be/1x2MupZ6ukc?hd=1) showing all 
+**Note:** I recorded a [short video](http://youtu.be/1x2MupZ6ukc?hd=1) showing all 
 setup steps, running the tests and coverage report, and 
 connecting with Postman and with the frontend.
 
