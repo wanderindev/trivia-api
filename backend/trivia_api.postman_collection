@@ -1,0 +1,728 @@
+{
+	"info": {
+		"_postman_id": "2d2a9a41-f87c-4edc-b82a-65ce5b0d9adc",
+		"name": "Trivia API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "{{url}}/categories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/categories",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"categories"
+					]
+				},
+				"description": "Fetches all categories.\n- Request parameters: None.\n- Response body: A JSON string containing all categories.  The keys are the category ids and the values are the category type."
+			},
+			"response": [
+				{
+					"name": "{{url}}/categories",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/categories",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "191"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Authorization"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, PATCH, POST, DELETE, OPTIONS"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.15.4 Python/3.7.4"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 01 Dec 2019 03:10:03 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"categories\": {\n        \"1001\": \"Science\",\n        \"1002\": \"Art\",\n        \"1003\": \"Geography\",\n        \"1004\": \"History\",\n        \"1005\": \"Entertainment\",\n        \"1006\": \"Sports\"\n    },\n    \"success\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "{{url}}/categories/<int:category_id>/questions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/categories/1001/questions",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"categories",
+						"1001",
+						"questions"
+					]
+				},
+				"description": "Fetches all questions that belong to the category indicated by the category_id.\n- Request parameters: None.\n- Response body: A JSON string with: a list of question, the current category type, and the total number of questions in the selected category."
+			},
+			"response": [
+				{
+					"name": "{{url}}/categories/<int:category_id>/questions",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/categories/1001/questions",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"categories",
+								"1001",
+								"questions"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "648"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Authorization"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, PATCH, POST, DELETE, OPTIONS"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.15.4 Python/3.7.4"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 01 Dec 2019 03:16:06 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"current_category\": \"Science\",\n    \"questions\": [\n        {\n            \"answer\": \"The Liver\",\n            \"category_id\": 1001,\n            \"difficulty\": 4,\n            \"id\": 1020,\n            \"question\": \"What is the heaviest organ in the human body?\"\n        },\n        {\n            \"answer\": \"Alexander Fleming\",\n            \"category_id\": 1001,\n            \"difficulty\": 3,\n            \"id\": 1021,\n            \"question\": \"Who discovered penicillin?\"\n        },\n        {\n            \"answer\": \"Blood\",\n            \"category_id\": 1001,\n            \"difficulty\": 4,\n            \"id\": 1022,\n            \"question\": \"Hematology is a branch of medicine involving the study of what?\"\n        }\n    ],\n    \"success\": true,\n    \"total_questions\": 3\n}"
+				},
+				{
+					"name": "{{url}}/categories/<int:category_id>/questions",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/categories/5001/questions",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"categories",
+								"5001",
+								"questions"
+							]
+						}
+					},
+					"status": "NOT FOUND",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "67"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Authorization"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, PATCH, POST, DELETE, OPTIONS"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.15.4 Python/3.7.4"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 01 Dec 2019 03:43:55 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": 404,\n    \"message\": \"Not found\",\n    \"success\": false\n}"
+				}
+			]
+		},
+		{
+			"name": "{{url}}/questions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/questions?page=2",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"questions"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				},
+				"description": "Fetches a list of ten questions, ordered by question id.\n- Request parameters: None.\n- URL parameters: page, defines which group of ten questions is returned.  Default is 1, which will return the first ten questions.\n- Response body: A JSON string containing: the list of questions, a categories dict, and the total number of questions."
+			},
+			"response": [
+				{
+					"name": "{{url}}/questions?page=2",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/questions?page=2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"questions"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1967"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Authorization"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, PATCH, POST, DELETE, OPTIONS"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.15.4 Python/3.7.4"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 01 Dec 2019 03:05:05 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"categories\": {\n        \"1001\": \"Science\",\n        \"1002\": \"Art\",\n        \"1003\": \"Geography\",\n        \"1004\": \"History\",\n        \"1005\": \"Entertainment\",\n        \"1006\": \"Sports\"\n    },\n    \"questions\": [\n        {\n            \"answer\": \"Agra\",\n            \"category_id\": 1003,\n            \"difficulty\": 2,\n            \"id\": 1015,\n            \"question\": \"The Taj Mahal is located in which Indian city?\"\n        },\n        {\n            \"answer\": \"Escher\",\n            \"category_id\": 1002,\n            \"difficulty\": 1,\n            \"id\": 1016,\n            \"question\": \"Which Dutch graphic artist–initials M C was a creator of optical illusions?\"\n        },\n        {\n            \"answer\": \"Mona Lisa\",\n            \"category_id\": 1002,\n            \"difficulty\": 3,\n            \"id\": 1017,\n            \"question\": \"La Giaconda is better known as what?\"\n        },\n        {\n            \"answer\": \"One\",\n            \"category_id\": 1002,\n            \"difficulty\": 4,\n            \"id\": 1018,\n            \"question\": \"How many paintings did Van Gogh sell in his lifetime?\"\n        },\n        {\n            \"answer\": \"Jackson Pollock\",\n            \"category_id\": 1002,\n            \"difficulty\": 2,\n            \"id\": 1019,\n            \"question\": \"Which American artist was a pioneer of Abstract Expressionism, and a leading exponent of action painting?\"\n        },\n        {\n            \"answer\": \"The Liver\",\n            \"category_id\": 1001,\n            \"difficulty\": 4,\n            \"id\": 1020,\n            \"question\": \"What is the heaviest organ in the human body?\"\n        },\n        {\n            \"answer\": \"Alexander Fleming\",\n            \"category_id\": 1001,\n            \"difficulty\": 3,\n            \"id\": 1021,\n            \"question\": \"Who discovered penicillin?\"\n        },\n        {\n            \"answer\": \"Blood\",\n            \"category_id\": 1001,\n            \"difficulty\": 4,\n            \"id\": 1022,\n            \"question\": \"Hematology is a branch of medicine involving the study of what?\"\n        },\n        {\n            \"answer\": \"Scarab\",\n            \"category_id\": 1004,\n            \"difficulty\": 4,\n            \"id\": 1023,\n            \"question\": \"Which dung beetle was worshipped by the ancient Egyptians?\"\n        }\n    ],\n    \"success\": true,\n    \"total_questions\": 19\n}"
+				},
+				{
+					"name": "{{url}}/questions",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/questions",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"questions"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2274"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Authorization"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, PATCH, POST, DELETE, OPTIONS"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.15.4 Python/3.7.4"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 01 Dec 2019 03:00:01 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"categories\": {\n        \"1001\": \"Science\",\n        \"1002\": \"Art\",\n        \"1003\": \"Geography\",\n        \"1004\": \"History\",\n        \"1005\": \"Entertainment\",\n        \"1006\": \"Sports\"\n    },\n    \"questions\": [\n        {\n            \"answer\": \"Apollo 13\",\n            \"category_id\": 1005,\n            \"difficulty\": 4,\n            \"id\": 1002,\n            \"question\": \"What movie earned Tom Hanks his third straight Oscar nomination, in 1996?\"\n        },\n        {\n            \"answer\": \"Tom Cruise\",\n            \"category_id\": 1005,\n            \"difficulty\": 4,\n            \"id\": 1004,\n            \"question\": \"What actor did author Anne Rice first denounce, then praise in the role of her beloved Lestat?\"\n        },\n        {\n            \"answer\": \"Maya Angelou\",\n            \"category_id\": 1004,\n            \"difficulty\": 2,\n            \"id\": 1005,\n            \"question\": \"Whose autobiography is entitled 'I Know Why the Caged Bird Sings'?\"\n        },\n        {\n            \"answer\": \"Edward Scissorhands\",\n            \"category_id\": 1005,\n            \"difficulty\": 3,\n            \"id\": 1006,\n            \"question\": \"What was the title of the 1990 fantasy directed by Tim Burton about a young man with multi-bladed appendages?\"\n        },\n        {\n            \"answer\": \"Muhammad Ali\",\n            \"category_id\": 1004,\n            \"difficulty\": 1,\n            \"id\": 1009,\n            \"question\": \"What boxer's original name is Cassius Clay?\"\n        },\n        {\n            \"answer\": \"Brazil\",\n            \"category_id\": 1006,\n            \"difficulty\": 3,\n            \"id\": 1010,\n            \"question\": \"Which is the only team to play in every soccer World Cup tournament?\"\n        },\n        {\n            \"answer\": \"Uruguay\",\n            \"category_id\": 1006,\n            \"difficulty\": 4,\n            \"id\": 1011,\n            \"question\": \"Which country won the first ever soccer World Cup in 1930?\"\n        },\n        {\n            \"answer\": \"George Washington Carver\",\n            \"category_id\": 1004,\n            \"difficulty\": 2,\n            \"id\": 1012,\n            \"question\": \"Who invented Peanut Butter?\"\n        },\n        {\n            \"answer\": \"Lake Victoria\",\n            \"category_id\": 1003,\n            \"difficulty\": 2,\n            \"id\": 1013,\n            \"question\": \"What is the largest lake in Africa?\"\n        },\n        {\n            \"answer\": \"The Palace of Versailles\",\n            \"category_id\": 1003,\n            \"difficulty\": 3,\n            \"id\": 1014,\n            \"question\": \"In which royal palace would you find the Hall of Mirrors?\"\n        }\n    ],\n    \"success\": true,\n    \"total_questions\": 19\n}"
+				},
+				{
+					"name": "{{url}}/questions?page=10",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/questions?page=10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"questions"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"status": "NOT FOUND",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "67"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Authorization"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, PATCH, POST, DELETE, OPTIONS"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.15.4 Python/3.7.4"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 01 Dec 2019 03:44:24 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": 404,\n    \"message\": \"Not found\",\n    \"success\": false\n}"
+				}
+			]
+		},
+		{
+			"name": "{{url}}/questions",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"question\": \"How long is the Nile river?\",\n\t\"answer\": \"6,650 km\",\n\t\"difficulty\": 5,\n\t\"category_id\": 1003\n}"
+				},
+				"url": {
+					"raw": "{{url}}/questions",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"questions"
+					]
+				},
+				"description": "Adds a new question.\n- Request parameters: A JSON string containing: question, answer, difficulty, and category_id.\n- URL parameters: page, defines which group of ten questions is returned. Default is 1, which will return the first ten questions.\n- Response body: A JSON string containingL the id of the newly created question, a paginated list of questions, and the total number of questions."
+			},
+			"response": [
+				{
+					"name": "{{url}}/questions",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"question\": \"How long is the Nile river?\",\n\t\"answer\": \"6,650 km\",\n\t\"difficulty\": 5,\n\t\"category_id\": 1003\n}"
+						},
+						"url": {
+							"raw": "{{url}}/questions",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"questions"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2073"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Authorization"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, PATCH, POST, DELETE, OPTIONS"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.15.4 Python/3.7.4"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 01 Dec 2019 03:19:30 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"created\": 1,\n    \"questions\": [\n        {\n            \"answer\": \"6,650 km\",\n            \"category_id\": 1003,\n            \"difficulty\": 5,\n            \"id\": 1,\n            \"question\": \"How long is the Nile river?\"\n        },\n        {\n            \"answer\": \"Apollo 13\",\n            \"category_id\": 1005,\n            \"difficulty\": 4,\n            \"id\": 1002,\n            \"question\": \"What movie earned Tom Hanks his third straight Oscar nomination, in 1996?\"\n        },\n        {\n            \"answer\": \"Tom Cruise\",\n            \"category_id\": 1005,\n            \"difficulty\": 4,\n            \"id\": 1004,\n            \"question\": \"What actor did author Anne Rice first denounce, then praise in the role of her beloved Lestat?\"\n        },\n        {\n            \"answer\": \"Maya Angelou\",\n            \"category_id\": 1004,\n            \"difficulty\": 2,\n            \"id\": 1005,\n            \"question\": \"Whose autobiography is entitled 'I Know Why the Caged Bird Sings'?\"\n        },\n        {\n            \"answer\": \"Edward Scissorhands\",\n            \"category_id\": 1005,\n            \"difficulty\": 3,\n            \"id\": 1006,\n            \"question\": \"What was the title of the 1990 fantasy directed by Tim Burton about a young man with multi-bladed appendages?\"\n        },\n        {\n            \"answer\": \"Muhammad Ali\",\n            \"category_id\": 1004,\n            \"difficulty\": 1,\n            \"id\": 1009,\n            \"question\": \"What boxer's original name is Cassius Clay?\"\n        },\n        {\n            \"answer\": \"Brazil\",\n            \"category_id\": 1006,\n            \"difficulty\": 3,\n            \"id\": 1010,\n            \"question\": \"Which is the only team to play in every soccer World Cup tournament?\"\n        },\n        {\n            \"answer\": \"Uruguay\",\n            \"category_id\": 1006,\n            \"difficulty\": 4,\n            \"id\": 1011,\n            \"question\": \"Which country won the first ever soccer World Cup in 1930?\"\n        },\n        {\n            \"answer\": \"George Washington Carver\",\n            \"category_id\": 1004,\n            \"difficulty\": 2,\n            \"id\": 1012,\n            \"question\": \"Who invented Peanut Butter?\"\n        },\n        {\n            \"answer\": \"Lake Victoria\",\n            \"category_id\": 1003,\n            \"difficulty\": 2,\n            \"id\": 1013,\n            \"question\": \"What is the largest lake in Africa?\"\n        }\n    ],\n    \"success\": true,\n    \"total_questions\": 20\n}"
+				},
+				{
+					"name": "{{url}}/questions?page=2",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"question\": \"How long is the Nile river?\",\n\t\"answer\": \"6,650 km\",\n\t\"difficulty\": 5,\n\t\"category_id\": 1003\n}"
+						},
+						"url": {
+							"raw": "{{url}}/questions?page=2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"questions"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2012"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Authorization"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, PATCH, POST, DELETE, OPTIONS"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.15.4 Python/3.7.4"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 01 Dec 2019 03:26:13 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"created\": 4,\n    \"questions\": [\n        {\n            \"answer\": \"Uruguay\",\n            \"category_id\": 1006,\n            \"difficulty\": 4,\n            \"id\": 1011,\n            \"question\": \"Which country won the first ever soccer World Cup in 1930?\"\n        },\n        {\n            \"answer\": \"George Washington Carver\",\n            \"category_id\": 1004,\n            \"difficulty\": 2,\n            \"id\": 1012,\n            \"question\": \"Who invented Peanut Butter?\"\n        },\n        {\n            \"answer\": \"Lake Victoria\",\n            \"category_id\": 1003,\n            \"difficulty\": 2,\n            \"id\": 1013,\n            \"question\": \"What is the largest lake in Africa?\"\n        },\n        {\n            \"answer\": \"The Palace of Versailles\",\n            \"category_id\": 1003,\n            \"difficulty\": 3,\n            \"id\": 1014,\n            \"question\": \"In which royal palace would you find the Hall of Mirrors?\"\n        },\n        {\n            \"answer\": \"Agra\",\n            \"category_id\": 1003,\n            \"difficulty\": 2,\n            \"id\": 1015,\n            \"question\": \"The Taj Mahal is located in which Indian city?\"\n        },\n        {\n            \"answer\": \"Escher\",\n            \"category_id\": 1002,\n            \"difficulty\": 1,\n            \"id\": 1016,\n            \"question\": \"Which Dutch graphic artist–initials M C was a creator of optical illusions?\"\n        },\n        {\n            \"answer\": \"Mona Lisa\",\n            \"category_id\": 1002,\n            \"difficulty\": 3,\n            \"id\": 1017,\n            \"question\": \"La Giaconda is better known as what?\"\n        },\n        {\n            \"answer\": \"One\",\n            \"category_id\": 1002,\n            \"difficulty\": 4,\n            \"id\": 1018,\n            \"question\": \"How many paintings did Van Gogh sell in his lifetime?\"\n        },\n        {\n            \"answer\": \"Jackson Pollock\",\n            \"category_id\": 1002,\n            \"difficulty\": 2,\n            \"id\": 1019,\n            \"question\": \"Which American artist was a pioneer of Abstract Expressionism, and a leading exponent of action painting?\"\n        },\n        {\n            \"answer\": \"The Liver\",\n            \"category_id\": 1001,\n            \"difficulty\": 4,\n            \"id\": 1020,\n            \"question\": \"What is the heaviest organ in the human body?\"\n        }\n    ],\n    \"success\": true,\n    \"total_questions\": 23\n}"
+				}
+			]
+		},
+		{
+			"name": "{{url}}/questions/<int:question_id>",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/questions/5",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"questions",
+						"5"
+					]
+				},
+				"description": "Deletes the question identified by the question_id.\n- Request parameters: None.\n- URL parameters:page, defines which group of ten questions is returned. Default is 1, which will return the first ten questions.\n- Response body: A JSON string containing: the id of the deleted question, a paginated list of questions, and the total number of questions."
+			},
+			"response": [
+				{
+					"name": "{{url}}/questions/<int:question_id>",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/questions/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"questions",
+								"1"
+							]
+						}
+					},
+					"status": "NOT FOUND",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "67"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Authorization"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, PATCH, POST, DELETE, OPTIONS"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.15.4 Python/3.7.4"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 01 Dec 2019 04:13:55 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": 404,\n    \"message\": \"Not found\",\n    \"success\": false\n}"
+				},
+				{
+					"name": "{{url}}/questions/<int:question_id>",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/questions/5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"questions",
+								"5"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2122"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Authorization"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, PATCH, POST, DELETE, OPTIONS"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.15.4 Python/3.7.4"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 01 Dec 2019 03:59:01 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"deleted\": 5,\n    \"questions\": [\n        {\n            \"answer\": \"Apollo 13\",\n            \"category_id\": 1005,\n            \"difficulty\": 4,\n            \"id\": 1002,\n            \"question\": \"What movie earned Tom Hanks his third straight Oscar nomination, in 1996?\"\n        },\n        {\n            \"answer\": \"Tom Cruise\",\n            \"category_id\": 1005,\n            \"difficulty\": 4,\n            \"id\": 1004,\n            \"question\": \"What actor did author Anne Rice first denounce, then praise in the role of her beloved Lestat?\"\n        },\n        {\n            \"answer\": \"Maya Angelou\",\n            \"category_id\": 1004,\n            \"difficulty\": 2,\n            \"id\": 1005,\n            \"question\": \"Whose autobiography is entitled 'I Know Why the Caged Bird Sings'?\"\n        },\n        {\n            \"answer\": \"Edward Scissorhands\",\n            \"category_id\": 1005,\n            \"difficulty\": 3,\n            \"id\": 1006,\n            \"question\": \"What was the title of the 1990 fantasy directed by Tim Burton about a young man with multi-bladed appendages?\"\n        },\n        {\n            \"answer\": \"Muhammad Ali\",\n            \"category_id\": 1004,\n            \"difficulty\": 1,\n            \"id\": 1009,\n            \"question\": \"What boxer's original name is Cassius Clay?\"\n        },\n        {\n            \"answer\": \"Brazil\",\n            \"category_id\": 1006,\n            \"difficulty\": 3,\n            \"id\": 1010,\n            \"question\": \"Which is the only team to play in every soccer World Cup tournament?\"\n        },\n        {\n            \"answer\": \"Uruguay\",\n            \"category_id\": 1006,\n            \"difficulty\": 4,\n            \"id\": 1011,\n            \"question\": \"Which country won the first ever soccer World Cup in 1930?\"\n        },\n        {\n            \"answer\": \"George Washington Carver\",\n            \"category_id\": 1004,\n            \"difficulty\": 2,\n            \"id\": 1012,\n            \"question\": \"Who invented Peanut Butter?\"\n        },\n        {\n            \"answer\": \"Lake Victoria\",\n            \"category_id\": 1003,\n            \"difficulty\": 2,\n            \"id\": 1013,\n            \"question\": \"What is the largest lake in Africa?\"\n        },\n        {\n            \"answer\": \"The Palace of Versailles\",\n            \"category_id\": 1003,\n            \"difficulty\": 3,\n            \"id\": 1014,\n            \"question\": \"In which royal palace would you find the Hall of Mirrors?\"\n        }\n    ],\n    \"success\": true,\n    \"total_questions\": 19\n}"
+				}
+			]
+		},
+		{
+			"name": "{{url}}/questions/search",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"search_term\": \"movie\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/questions/search",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"questions",
+						"search"
+					]
+				},
+				"description": "Fetches all questions that match the search_term.\n- Request parameters: None.\n- Response body: A JSON string containing: a list of all questions found and the total number of questions found."
+			},
+			"response": [
+				{
+					"name": "{{url}}/questions/search",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"search_term\": \"movie\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/questions/search",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"questions",
+								"search"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "277"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Content-Type, Authorization"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, PATCH, POST, DELETE, OPTIONS"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/0.15.4 Python/3.7.4"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 01 Dec 2019 04:01:07 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"questions\": [\n        {\n            \"answer\": \"Apollo 13\",\n            \"category_id\": 1005,\n            \"difficulty\": 4,\n            \"id\": 1002,\n            \"question\": \"What movie earned Tom Hanks his third straight Oscar nomination, in 1996?\"\n        }\n    ],\n    \"success\": true,\n    \"total_questions\": 1\n}"
+				}
+			]
+		}
+	],
+	"protocolProfileBehavior": {}
+}
