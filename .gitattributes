@@ -1,2 +1,2 @@
-src/frontend/**/* linguist-vendored=true
-src/backend/htmlcov/**/* linguist-vendored=true
+frontend/**/* linguist-vendored=true
+backend/htmlcov/**/* linguist-vendored=true
