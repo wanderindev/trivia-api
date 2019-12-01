@@ -27,7 +27,7 @@
 The project contains a working frontend and a starter code for a backend.
 
 The work performed on the frontend was limited to adding CSS to improve the application look and feel,
-fix inconsistent indentation, removing unnecessary returns, adding alt attributes to images, and fixing
+fixing inconsistent indentation, removing unnecessary returns, adding alt attributes to images, and fixing
 the number of arguments in some function signatures.
 
 In the backend, I added all the endpoints required by the frontend, completed the SQLAlchemy models,
@@ -102,8 +102,7 @@ Install the project dependencies:
 npm install
 ```
 
-Run the frontend:
-Install the project dependencies:
+Start the frontend:
 ```sh
 npm start
 ```
